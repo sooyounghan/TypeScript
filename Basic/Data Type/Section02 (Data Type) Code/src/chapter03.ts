@@ -1,0 +1,57 @@
+/*
+    1. 객체 타입 - object 라는 객체 타입 존재
+        - 변수명 : object (이 타입은 객체라는 정보 외에 아무런 정보가 없는 타입으로 간주)
+        - 객체 리터럴 타입 사용 (객체 타입을 프로퍼티 기반으로 정의 가능)
+          + 변수명 : {
+                프로퍼티1 : 타입1
+                프로퍼티2 : 타입2
+            } = {
+                Key1 : Value1
+                Key2 : Value2
+            }
+        - 타입 스크립트 : 객체 타입을 정의할 때, 객체를 이루는 프로퍼티나 메서드, 즉 구조를 기준으로 타입을 정의
+        - 이를 구조적 타입 시스템이라 부름 (프로퍼티를 기준으로 타입을 결정하는 시스템) - Property Based Type System
+            + 자바에서는 이름을 기준으로 타입을 정의 : 명목적 타입 시스템 (구조적 타입 시스템과 반대)
+        
+    2. 프로퍼티가 있어도 되고, 없어도 되는 선택적인 프로퍼티일 경우, 객체 타입 선언 시 해당 프로퍼티 뒤에 '변수명? : 타입' 지정
+        - 선택적 프로퍼티, Optional Property라고 부름
+*/
+/*
+  let user : obejct = {
+    id: 1,
+    name: "한수영",
+  };
+*/
+
+let user: {
+  id?: number;
+  name: string;
+} = {
+  id: 1,
+  name: "한수영",
+};
+
+user.id; // object 타입으로 정의 : 점 표기법으로 접근하면 오류 발생
+
+let dog: {
+  name: string;
+  color: string;
+} = {
+  name: "돌돌이",
+  color: "brown",
+};
+
+user = {
+  name: "홍길동",
+};
+
+/*
+    3. 프로퍼티의 값을 변경하면 안 되는 경우 프로퍼티 이름 앞에 readonly 표시하여 읽기 전용 프로퍼티로 설정
+*/
+let config: {
+  readonly apiKey: string;
+} = {
+  apiKey: "My API Key",
+};
+
+// config.apiKey = "Change API KEY"; // 오류

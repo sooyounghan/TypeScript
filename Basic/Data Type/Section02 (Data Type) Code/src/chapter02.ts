@@ -1,0 +1,51 @@
+/*
+    1. 배열
+        - 변수명 : 타입[](배열임을 알리기 위함)
+        - 변수명 : Array<타입> (<> : Generic 문법)
+*/
+let numArr: number[] = [1, 2, 3]; // 숫자 값을 담는 배열
+let strArr: string[] = ["Hello, ", "I'm ", "Soo Young"]; // 문자열 값을 담는 배열
+let boolArr: Array<boolean> = [true, false, true]; // boolean 값을 담는 배열
+
+/*
+    2. 배열 요소 타입이 다양할 경우
+        - Union 타입 > 변수명 : ( 타입 1 | 타입 2 )[] : 배열 요소가 타입1이거나 타입2 일 수 있음 
+*/
+let multiArr: (number | string)[] = [1, "hello"]; // Union 타입
+
+/*
+    3. 다차원 배열 타입 정의
+        - 같은 타입 일 경우 > 변수명 : 타입[][] ([]는 n차원 배열일 경우 n개)
+*/
+let doubleArr: number[][] = [
+  [1, 2, 3],
+  [4, 5],
+];
+
+/*
+    4. 튜플 (tuple) : 길이와 타입이 고정된 배열
+        - 변수명 : [타입1, 타입2]
+        - 배열이므로 배열 함수 사용 가능 (push(), pop() 등등)
+            + 단, 배열 함수를 사용할 때는 길이 제한이 발생하지 않음 (자바스크립트의 배열로 인식하기 때문임)
+*/
+let tup1: [number, number] = [1, 2];
+// tup1 = [1, 2, 3]; // 오류 발생
+// tup1 = ["1", "2"]; // 오류 발생
+
+let tup2: [number, string, boolean] = [1, "2", true];
+// tup2 = ["2", 1, true]; // 자료형 순서가 다르면 안 됨
+// tup2 = [1, "2"];
+
+tup1.push(1);
+tup1.pop();
+tup1.pop();
+tup1.pop();
+
+// 활용 사례 : 2차원 배열이므로 [][] 이고, 첫 번째 배열 요소에 타입 지정 string, number
+const users: [string, number][] = [
+  ["한수영", 1],
+  ["아무개", 2],
+  ["김아무개", 3],
+  ["박아무개", 4],
+  // [5, "최아무개"], // 에러 발생
+];
