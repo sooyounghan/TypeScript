@@ -1,0 +1,37 @@
+/**
+ * 1. 함수 타입 표현식 (Function Type Expression)
+ *  - 매개 변수 갯수를 추가하면 오류 발생하므로, 매개변수 타입과 개수를 맞춰야 함
+ */
+
+// 함수 타입 별칭 사용 가능
+// (a: number, b:number) : 매개변수 타입 / number : 반환값 타입
+type Operation = (a: number, b: number) => number;
+
+// const add : (a: number, b:number) => number = (a, b, c) => a + b; // 오류 발생
+const add: (a: number, b: number) => number = (a, b) => a + b; // 타입 별칭 미사용
+const sub: Operation = (a, b) => a - b;
+const multiply: Operation = (a, b) => a * b;
+const divide: Operation = (a, b) => a / b;
+
+/**
+ * 2. 호출 시그니처 (콜 시그니처)
+ *  - 객체 타입으로 정의하는 이유 : 자바스크립트에서 함수는 객체 타입이므로 객체 타입으로 설정
+ *  - 하이브리드 타입 : 호출 시그니처를 이용할 때, 객체에 프로퍼티 추가 정의 가능 -> 객체로도 쓸 수 있고, 함수로도 사용 가능하다고 하여 하이브리드 타입
+ */
+
+/**
+ * function operation2(a:number, b:number) : number {
+ *      ...
+ *  } 에서 타입 지정과 동일
+ */
+type Operation2 = {
+  (a: number, b: number): number;
+  name: string; // 하이브리드 타입
+}; // 함수의 타입 정의 완료
+
+const add2: Operation2 = (a, b) => a + b; // 타입 별칭 미사용
+const sub2: Operation2 = (a, b) => a - b;
+const multiply2: Operation2 = (a, b) => a * b;
+const divide2: Operation2 = (a, b) => a / b;
+
+add2.name; // 가능
