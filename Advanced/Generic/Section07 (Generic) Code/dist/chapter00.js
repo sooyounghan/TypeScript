@@ -1,0 +1,32 @@
+/**
+ * 1. 제네릭 소개
+ *  - 함수의 인수에 따라 반환 값의 타입을 가변적으로 정할 수 있음
+ *  - Generic : 일반적인, 포괄적인 뜻을 가지고 있음 => Generic 함수 : 일반적인, 포괄적인 함수 (모든 타입에 두루 쓸 수 있는 범용적 함수)
+ */
+// 범용적인 매개변수를 받고 싶을 때 any 사용 - 반환값으로 타입 추정 : any 타입 / unknown 타입 -> 각 문제점 발생 => 제네릭 함수 사용
+// function func(value: any) {
+//function func(value: unknown) {
+/**
+ * function 함수명<타입변수> (매개변수: 타입변수): 타입변수(반환값) {
+ *    반환값 타입변수;
+ * }
+ */
+function func(value) {
+    // 💡 <T> : 타입을 지정하는 변수 (타입 변수) : 함수를 호출할 때 인수의 타입이 어떤 타입인지에 따라 타입 변수에 저장되는 타입이 달라짐
+    return value;
+}
+let num = func(10); // number 타입
+// num.toUpperCase(); // any 타입이므로 숫자임에도 문자열 함수 사용 가능성 존재
+// num.toFixed(); // unknown 타입 (전체 집합)으로 간주되어 사용 불가
+// any 타입일 때,
+if (typeof num === "number") {
+    // 타입 좁히기 사용
+    num.toFixed();
+}
+let bool = func(true); // boolean 타입
+let str = func("string"); // string 타입
+// 제네릭 함수를 호출할 때 타입 변수에 할당되는 타입을 인수틀 통해 추론하지 말고, 프로그래머가 명시적 정의 가능
+let arr = func([1, 2, 3]); // T : number[]으로 arr도 number[]
+let arr2 = func([1, 2, 3]); // 타입 단언 가능
+let arr3 = func([1, 2, 3]); // 함수 호출 시, 함수의 이름 뒤 <[실제타입1, 실제타입2, 실제타입3, ...]> 작성
+export {};
